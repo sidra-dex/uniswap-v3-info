@@ -6,6 +6,8 @@ export enum ChainId {
   SIDRACHIAN = 97454,
 }
 
+export const SUPPORTED_CHAINS = [ChainId.SIDRACHIAN]
+
 export type NetworkInfo = {
   chainId: ChainId
   id: SupportedNetwork

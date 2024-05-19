@@ -1,27 +1,13 @@
-import { ChainId, SUPPORTED_CHAINS, SupportedChainsType } from '@uniswap/sdk-core'
+import { SupportedChainsType } from '@uniswap/sdk-core'
+
+import { ChainId, SUPPORTED_CHAINS } from 'constants/networks'
 
 export const CHAIN_IDS_TO_NAMES = {
-  [ChainId.MAINNET]: 'mainnet',
-  [ChainId.GOERLI]: 'goerli',
-  [ChainId.SEPOLIA]: 'sepolia',
-  [ChainId.POLYGON]: 'polygon',
-  [ChainId.POLYGON_MUMBAI]: 'polygon_mumbai',
-  [ChainId.CELO]: 'celo',
-  [ChainId.CELO_ALFAJORES]: 'celo_alfajores',
-  [ChainId.ARBITRUM_ONE]: 'arbitrum',
-  [ChainId.ARBITRUM_GOERLI]: 'arbitrum_goerli',
-  [ChainId.OPTIMISM]: 'optimism',
-  [ChainId.OPTIMISM_GOERLI]: 'optimism_goerli',
-  [ChainId.BNB]: 'bnb',
-  [ChainId.AVALANCHE]: 'avalanche',
-  [ChainId.BASE]: 'base',
+  [ChainId.SIDRACHIAN]: 'mainnet',
 } as const
 
-// Include ChainIds in this array if they are not supported by the UX yet, but are already in the SDK.
-const NOT_YET_UX_SUPPORTED_CHAIN_IDS: number[] = [ChainId.BASE_GOERLI]
-
 // TODO: include BASE_GOERLI when routing is implemented
-export type SupportedInterfaceChain = Exclude<SupportedChainsType, ChainId.BASE_GOERLI>
+export type SupportedInterfaceChain = Exclude<SupportedChainsType, ChainId.SIDRACHIAN>
 
 export function isSupportedChain(
   chainId: number | null | undefined | ChainId,
@@ -30,7 +16,7 @@ export function isSupportedChain(
   if (featureFlags && chainId && chainId in featureFlags) {
     return featureFlags[chainId]
   }
-  return !!chainId && SUPPORTED_CHAINS.indexOf(chainId) !== -1 && NOT_YET_UX_SUPPORTED_CHAIN_IDS.indexOf(chainId) === -1
+  return !!chainId && SUPPORTED_CHAINS.indexOf(chainId) !== -1
 }
 
 export function asSupportedChain(
@@ -44,45 +30,19 @@ export function asSupportedChain(
   return isSupportedChain(chainId) ? chainId : undefined
 }
 
-export const SUPPORTED_GAS_ESTIMATE_CHAIN_IDS = [
-  ChainId.MAINNET,
-  ChainId.POLYGON,
-  ChainId.CELO,
-  ChainId.OPTIMISM,
-  ChainId.ARBITRUM_ONE,
-  ChainId.BNB,
-  ChainId.AVALANCHE,
-  ChainId.BASE,
-] as const
+export const SUPPORTED_GAS_ESTIMATE_CHAIN_IDS = [ChainId.SIDRACHIAN] as const
 
 /**
  * Supported networks for V2 pool behavior.
  */
-export const SUPPORTED_V2POOL_CHAIN_IDS = [ChainId.MAINNET, ChainId.GOERLI] as const
+export const SUPPORTED_V2POOL_CHAIN_IDS = [] as const
 
-export const TESTNET_CHAIN_IDS = [
-  ChainId.GOERLI,
-  ChainId.SEPOLIA,
-  ChainId.POLYGON_MUMBAI,
-  ChainId.ARBITRUM_GOERLI,
-  ChainId.OPTIMISM_GOERLI,
-  ChainId.CELO_ALFAJORES,
-] as const
+export const TESTNET_CHAIN_IDS = [ChainId.SIDRACHIAN] as const
 
 /**
  * All the chain IDs that are running the Ethereum protocol.
  */
-export const L1_CHAIN_IDS = [
-  ChainId.MAINNET,
-  ChainId.GOERLI,
-  ChainId.SEPOLIA,
-  ChainId.POLYGON,
-  ChainId.POLYGON_MUMBAI,
-  ChainId.CELO,
-  ChainId.CELO_ALFAJORES,
-  ChainId.BNB,
-  ChainId.AVALANCHE,
-] as const
+export const L1_CHAIN_IDS = [ChainId.SIDRACHIAN] as const
 
 export type SupportedL1ChainId = (typeof L1_CHAIN_IDS)[number]
 
@@ -90,13 +50,7 @@ export type SupportedL1ChainId = (typeof L1_CHAIN_IDS)[number]
  * Controls some L2 specific behavior, e.g. slippage tolerance, special UI behavior.
  * The expectation is that all of these networks have immediate transaction confirmation.
  */
-export const L2_CHAIN_IDS = [
-  ChainId.ARBITRUM_ONE,
-  ChainId.ARBITRUM_GOERLI,
-  ChainId.OPTIMISM,
-  ChainId.OPTIMISM_GOERLI,
-  ChainId.BASE,
-] as const
+export const L2_CHAIN_IDS = [] as const
 
 export type SupportedL2ChainId = (typeof L2_CHAIN_IDS)[number]
 
@@ -107,33 +61,13 @@ export type SupportedL2ChainId = (typeof L2_CHAIN_IDS)[number]
  */
 export function getChainPriority(chainId: ChainId): number {
   switch (chainId) {
-    case ChainId.MAINNET:
-    case ChainId.GOERLI:
-    case ChainId.SEPOLIA:
+    case ChainId.SIDRACHIAN:
       return 0
-    case ChainId.ARBITRUM_ONE:
-    case ChainId.ARBITRUM_GOERLI:
-      return 1
-    case ChainId.OPTIMISM:
-    case ChainId.OPTIMISM_GOERLI:
-      return 2
-    case ChainId.POLYGON:
-    case ChainId.POLYGON_MUMBAI:
-      return 3
-    case ChainId.BASE:
-      return 4
-    case ChainId.BNB:
-      return 5
-    case ChainId.AVALANCHE:
-      return 6
-    case ChainId.CELO:
-    case ChainId.CELO_ALFAJORES:
-      return 7
     default:
       return 8
   }
 }
 
 export function isUniswapXSupportedChain(chainId: number) {
-  return chainId === ChainId.MAINNET
+  return chainId !== ChainId.SIDRACHIAN
 }

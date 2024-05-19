@@ -49,7 +49,7 @@ export function useFetchedSubgraphStatus(): {
     client: healthClient,
     fetchPolicy: 'network-only',
     variables: {
-      name: activeNetwork === SidrachianNetworkInfo ? 'uniswap/uniswap-v3' : 'uniswap/uniswap-v3',
+      name: activeNetwork === SidrachianNetworkInfo ? 'ianlapham/uniswap-v3' : 'uniswap/uniswap-v3',
     },
   })
 
