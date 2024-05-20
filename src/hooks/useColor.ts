@@ -7,9 +7,9 @@ import uriToHttp from 'utils/uriToHttp'
 import { isAddress } from 'utils'
 
 async function getColorFromToken(token: Token): Promise<string | null> {
-  const path = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${token.address}/logo.png`
+  console.log('token', token)
 
-  return Vibrant.from(path)
+  return Vibrant.from('/images/100.png')
     .getPalette()
     .then((palette) => {
       if (palette?.Vibrant) {

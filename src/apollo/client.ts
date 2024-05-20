@@ -1,12 +1,12 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client'
 
 export const healthClient = new ApolloClient({
-  uri: 'http://localhost:8030/graphql',
+  uri: 'https://internel-graph-node.sidradex.com/graphql',
   cache: new InMemoryCache(),
 })
 
 export const blockClient = new ApolloClient({
-  uri: 'http://localhost:8000/subgraphs/name/blocklytics/ethereum-blocks',
+  uri: 'https://graph-node.sidradex.com/subgraphs/name/blocklytics/ethereum-blocks',
   cache: new InMemoryCache(),
   queryDeduplication: true,
   defaultOptions: {
@@ -21,7 +21,7 @@ export const blockClient = new ApolloClient({
 })
 
 export const client = new ApolloClient({
-  uri: 'http://127.0.0.1:8000/subgraphs/name/ianlapham/uniswap-v3',
+  uri: 'https://graph-node.sidradex.com/subgraphs/name/ianlapham/uniswap-v3',
   cache: new InMemoryCache({
     typePolicies: {
       Token: {

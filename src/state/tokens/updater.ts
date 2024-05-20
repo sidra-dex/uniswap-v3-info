@@ -14,6 +14,9 @@ export default function Updater(): null {
 
   // add top pools on first load
   useEffect(() => {
+    if (error) {
+      console.error('Failed to fetch top token addresses', error)
+    }
     if (addresses && !error && !loading) {
       addTokenKeys(addresses)
     }

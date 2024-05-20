@@ -70,6 +70,7 @@ const BannerWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  background-color: ${({ theme }) => theme.red3};
 `
 
 const WarningBanner = styled.div`
@@ -147,14 +148,7 @@ export default function App() {
                 </WarningBanner>
               </BannerWrapper>
             )}
-            {/* <BannerWrapper>
-              <UrlBanner>
-                {`Explore the new combined V2 and V3 analytics at `}
-                <Link href={'https://app.uniswap.org/explore'}>
-                  <Decorator>app.uniswap.org</Decorator>
-                </Link>
-              </UrlBanner>
-            </BannerWrapper> */}
+            <BannerWrapper>Warning: This is a testnet version of the site. Values are not real.</BannerWrapper>
             <Hide1080>
               <TopBar />
             </Hide1080>

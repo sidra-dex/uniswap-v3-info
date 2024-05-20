@@ -16,7 +16,7 @@ const getTokenLogoURL = ({ address, chainId }: { address: string; chainId: Chain
   // return `https://raw.githubusercontent.com/uniswap/assets/master/blockchains/${chainIdToNetworkName(
   //   chainId,
   // )}/assets/${address}/logo.png`
-  return `https://www.sidrachain.com/icons/ios/100.png?id=${chainIdToNetworkName(chainId)}&address=${address}`
+  return `/images/100.png?id=${chainIdToNetworkName(chainId)}&address=${address}`
 }
 
 const StyledLogo = styled(Logo)<{ size: string }>`

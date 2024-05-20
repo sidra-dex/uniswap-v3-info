@@ -66,7 +66,16 @@ export interface TokensState {
 
 export const initialState: TokensState = {
   byAddress: {
-    [SupportedNetwork.SIDRACHIAN]: {},
+    [SupportedNetwork.SIDRACHIAN]: {
+      // '0x56936A13dB61860F344f26ADeb572d91B21c65b2': {
+      //   data: undefined,
+      //   poolAddresses: undefined,
+      //   chartData: undefined,
+      //   priceData: {},
+      //   transactions: undefined,
+      //   lastUpdated: undefined,
+      // },
+    },
   },
 }
 

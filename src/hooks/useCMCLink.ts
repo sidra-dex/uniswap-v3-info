@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
 // endpoint to check asset exists
-const cmcEndpoint = 'https://3rdparty-apis.coinmarketcap.com/v1/cryptocurrency/contract?address='
+const cmcEndpoint = 'https://ledger.minesidra.com/api/v2/tokens/'
 
 /**
  * Check if asset exists on CMC, if exists
@@ -16,9 +16,7 @@ export function useCMCLink(address: string): string | undefined {
       const result = await fetch(cmcEndpoint + address)
       // if link exists, format the url
       if (result.status === 200) {
-        result.json().then(({ data }) => {
-          setLink(data.url)
-        })
+        setLink('https://ledger.minesidra.com/token/' + address)
       }
     }
     if (address) {

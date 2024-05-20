@@ -15,10 +15,12 @@ export const TOKENS_BULK = (block: number | undefined, tokens: string[]) => {
     return (tokenString += `"${address}",`)
   })
   tokenString += ']'
+
+  const filter = tokens.length > 0 ? `where: {id_in: ${tokenString}}` : 'first: 100'
   const queryString =
     `
     query tokens {
-      tokens(where: {id_in: ${tokenString}},` +
+      tokens(${filter},` +
     (block ? `block: {number: ${block}} ,` : ``) +
     ` orderBy: totalValueLockedUSD, orderDirection: desc, subgraphError: allow) {
         id
