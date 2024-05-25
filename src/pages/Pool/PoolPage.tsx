@@ -215,7 +215,7 @@ function PoolPage({ address }: { address: string }) {
               {activeNetwork !== SidrachianNetworkInfo ? null : (
                 <RowFixed>
                   <StyledExternalLink
-                    href={`https://app.uniswap.org/#/add/${poolData.token0.address}/${poolData.token1.address}/${poolData.feeTier}`}
+                    href={`https://swap.xsidra.com/add/?token0=${poolData.token0.address}&token1=${poolData.token1.address}&fee=${poolData.feeTier}`}
                   >
                     <ButtonGray width="170px" mr="12px" style={{ height: '44px' }}>
                       <RowBetween>
@@ -225,7 +225,7 @@ function PoolPage({ address }: { address: string }) {
                     </ButtonGray>
                   </StyledExternalLink>
                   <StyledExternalLink
-                    href={`https://app.uniswap.org/#/swap?inputCurrency=${poolData.token0.address}&outputCurrency=${poolData.token1.address}`}
+                    href={`https://swap.xsidra.com/?token0=${poolData.token0.address}&token1=${poolData.token1.address}`}
                   >
                     <ButtonPrimary width="100px" style={{ height: '44px' }}>
                       Trade

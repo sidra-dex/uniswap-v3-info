@@ -20,12 +20,20 @@ COPY . .
 RUN yarn build
 
 
-FROM nginx:alpine
+FROM node:alpine
 
-COPY --from=builder /app/build /var/www/html
+WORKDIR /app
 
-# Copy the default nginx.conf
-COPY --from=builder /app/nginx.conf /etc/nginx.conf
+COPY --from=builder /app/build /app
+
+# Install serve
+RUN yarn global add serve
+
+# Expose the port the app runs on
+EXPOSE 3000
+
+# Serve the app
+CMD ["serve", "-s", "/app", "-l", "3000"]
 
 
 
